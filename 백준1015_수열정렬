@@ -1,0 +1,43 @@
+# 백준 1015번 수열정렬
+# https://www.acmicpc.net/problem/1015
+
+# 비내림차순 개념
+
+# 참고 아이디어 : https://nerogarret.tistory.com/31
+# https://codedrive.tistory.com/141
+
+# 풀이 1
+
+n = int(input())
+A = list(map(int, input().split()))
+B = A.copy() # 배열 a 복사
+B.sort() # b를 정렬하고
+
+answer = []
+
+for i in A:
+    cnt = 0 # 배열 A에 중복값 구분
+    while(1):
+        if B.index(i) + cnt in answer: # A배열 원소에 대해 B의 인덱스에서 찾기
+            cnt += 1
+        else:
+            break
+    answer.append(B.index(i)+cnt)
+
+print(*answer)
+
+
+
+# 풀이2
+
+n = int(input())
+A = list(map(int, input().split()))
+B = sorted(A)
+answer = []
+for i in range(n):
+    idx = B.index(A[i])
+    answer.append(idx)
+    B[idx] = -1
+print(*answer)
+
+
